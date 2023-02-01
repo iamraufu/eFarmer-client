@@ -48,7 +48,7 @@ const Login = () => {
     return (
 
         <section className='container'>
-            <h1 className='title mt-5 text-center'>Enter Mobile No</h1>
+            <h1 className='title mt-5 text-center'>Enter Mobile Number</h1>
 
             <div className="d-flex justify-content-center align-items-center mt-5">
                 <form id='phone-container' onSubmit={handleSubmit(onSubmit)}>
