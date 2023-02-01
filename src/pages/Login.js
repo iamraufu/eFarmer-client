@@ -3,10 +3,12 @@ import React, {
     useState
 } from 'react';
 import { useForm } from "react-hook-form";
+import { useNavigate } from 'react-router-dom';
 import OtpInput from 'react18-input-otp';
 
 const Login = () => {
 
+    const navigate = useNavigate();
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => mobileNumberHandler(data);
 
@@ -22,7 +24,8 @@ const Login = () => {
 
     const handleChange = (enteredOtp) => {
         setOtp(enteredOtp);
-        enteredOtp.length === 4 && console.log(enteredOtp);
+        enteredOtp.length === 4 && navigate('/menu')
+        // console.log(enteredOtp);
     };
 
     // let seconds = 60
