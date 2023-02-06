@@ -38,7 +38,7 @@ const Login = () => {
         }
         otpDescription = otpDetails
 
-        fetch('http://localhost:8000/login', {
+        fetch('https://efarmer.herokuapp.com/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -105,7 +105,7 @@ const Login = () => {
             otp: otp
         }
         
-        fetch('http://localhost:8000/otp-verification', {
+        fetch('https://efarmer.herokuapp.com/otp-verification', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
