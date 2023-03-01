@@ -6,7 +6,6 @@ const VegyInfo = () => {
 
   const { id } = useParams()
   const code = parseInt(id)
-
   const vegetable = vegData.find(item => item.code === code)
 
   return (
@@ -57,4 +56,5 @@ const VegyInfo = () => {
     </div>
   )
 }
+
 export default VegyInfo

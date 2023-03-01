@@ -1,7 +1,7 @@
 const Colors = ({ vegy, vegData, register }) => {
+  
   const selectedVegy = vegData.find(item => item.name === vegy)
   const colors = selectedVegy.colors
-
 
   function addBorder(element) {
     // remove the "selected" class from all labels
@@ -13,7 +13,6 @@ const Colors = ({ vegy, vegData, register }) => {
     element.target.parentNode.classList.add('selected');
   }
 
-
   return (
     <div className="d-flex align-items-center justify-content-center mt-4">
       <span>রঙ নির্বাচন করুন: </span>
@@ -21,13 +20,10 @@ const Colors = ({ vegy, vegData, register }) => {
       <div className="color-options" >
         {colors.map((item) => (
 
-
           Object.values(item)[0] && (
             <label style={{ backgroundColor: `${Object.values(item)[0]}` }} key={Object.keys(item)[0]} className="custom-radio" >
               <input hidden type="radio" name="options" value={Object.values(item)[0]} onClick={addBorder} {...register('color', { required: true })} />
             </label>)
-
-
         ))}
 
       </div>

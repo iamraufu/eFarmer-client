@@ -14,7 +14,6 @@ const Form = () => {
   const navigate = useNavigate()
   const { register,unregister, getValues, handleSubmit, formState: { errors } } = useForm();
   const { user } = useAuth()
-  // eslint-disable-next-line
   const [vegy, setVegy] = useState(vegData[0].name)
   const [page, setPage] = useState(parseInt(localStorage.getItem('pageNum')) ? parseInt(localStorage.getItem('pageNum')) : 1);
   const [image, setImage] = useState(null);
@@ -45,8 +44,8 @@ const Form = () => {
   }
 
   const onSubmit = data => {
+    
     localStorage.removeItem("vegetableData")
-
 
     document.getElementById('final-submit').style.display = 'none'
     document.getElementById('form-submit-loader').style.display = 'block'
@@ -271,13 +270,14 @@ const Form = () => {
             <button className="btn-prev mt-1" onClick={handlePrevPage}>আগের ধাপ</button>
           </form>
         </div>
-
       </div>
     );
   };
 
   const renderPageFive = () => {
+    
     localStorage.setItem("pageNum", page)
+    
     return (
       <div>
         <TopNav bool={true} path={null} title='সফলভাবে জমা দেওয়া হয়েছে' />

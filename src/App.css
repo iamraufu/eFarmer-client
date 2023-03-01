@@ -78,9 +78,11 @@ input::-webkit-inner-spin-button {
 }
 
 
- /* Disable zooming on iOS */
- @media (max-width: 767px) {
-    html, body {
+/* Disable zooming on iOS */
+@media (max-width: 767px) {
+
+    html,
+    body {
         touch-action: pan-x pan-y !important;
         -webkit-user-zoom: fixed !important;
         -moz-user-zoom: fixed !important;
@@ -90,4 +92,5 @@ input::-webkit-inner-spin-button {
         -moz-text-size-adjust: none !important;
         -ms-text-size-adjust: none !important;
         text-size-adjust: none !important;
-    }}
+    }
+}
