@@ -1,22 +1,31 @@
+
 import './App.css';
-import { Route, Routes } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
-import Login from './pages/Login';
-import Menu from './pages/Menu';
-import PreviousList from './pages/PreviousList';
+import Form from './pages/Form';
+import VegyInfo from './pages/VegyInfo';
+import VegyInfoList from './pages/VegyInfoList';
+import NotFound from './pages/NotFound';
 import AuthProvider from './context/AuthProvider';
 import PrivateOutlet from './components/PrivateOutlet';
+import Login from './pages/Login';
+import PreviousUploadedList from './pages/PreviousUploadedList';
 
 function App() {
+
+
   return (
     <AuthProvider>
       <Routes>
-        <Route exact path='/' element={<Home />} />
-        <Route exact path='/login' element={<Login />} />
+        <Route path="/login" element={<Login />} />
 
         <Route path='/' element={<PrivateOutlet />}>
-          <Route exact path='menu' element={<Menu />} />
-          <Route exact path='previous-list' element={<PreviousList />} />
+          <Route path="/" element={<Home />} />
+          <Route path="previous-uploaded-list" element={<PreviousUploadedList />} />
+          <Route path="form" element={<Form />} />
+          <Route path="infoList" element={<VegyInfoList />} />
+          <Route path="infoList/:id" element={<VegyInfo />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
 
       </Routes>

@@ -4,6 +4,7 @@ const useCredential = () => {
 
     const id = localStorage.getItem('uId')
     const [user, setUser] = useState({});
+    const [formData, setFormData] = useState({})
 
     // getting userInfo from localStorage id and backend API
     const userData = () => {
@@ -30,7 +31,9 @@ const useCredential = () => {
     return {
         setUser,
         user,
-        logOut
+        logOut,
+        setFormData,
+        formData
     }
 };
 

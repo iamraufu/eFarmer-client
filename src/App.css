@@ -1,13 +1,17 @@
 * {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Baloo Da 2', cursive;
 }
 
-.title {
+.text-decoration-none {
+    text-decoration: none;
+}
+
+/* .title {
     font-weight: 600;
     font-size: 20px;
     line-height: 18px;
     color: #181725;
-}
+} */
 
 .input-login-number {
     border: none;
@@ -32,7 +36,7 @@ input::-webkit-inner-spin-button {
 }
 
 .btn-login {
-    height: 46px;
+    height: 50px;
     width: 293px;
     border-radius: 10px;
     background-color: #7CC259;
@@ -73,38 +77,17 @@ input::-webkit-inner-spin-button {
     color: #7CC259;
 }
 
-.take-photo {
-    height: 103px;
-    width: 311px;
-    border-radius: 10px;
-    background-color: #BCDEBF;
-}
 
-.previous-list {
-    width: 311px;
-    height: 103px;
-    background-color: #B5A6FF;
-    border-radius: 10px;
-}
-
-.menu-text {
-    font-weight: 600;
-    font-size: 11px;
-    line-height: 15px;
-    color: #414141;
-}
-
-.btn-menu {
-    border: none;
-    width: 129px;
-    height: 29px;
-    background-color: #EFBD42;
-    font-weight: 600;
-    font-size: 15px;
-    line-height: 20px;
-    color: #434040;
-}
-
-.text-danger{
-    font-size: 12px;
-}
+ /* Disable zooming on iOS */
+ @media (max-width: 767px) {
+    html, body {
+        touch-action: pan-x pan-y !important;
+        -webkit-user-zoom: fixed !important;
+        -moz-user-zoom: fixed !important;
+        -ms-user-zoom: fixed !important;
+        user-zoom: fixed !important;
+        -webkit-text-size-adjust: none !important;
+        -moz-text-size-adjust: none !important;
+        -ms-text-size-adjust: none !important;
+        text-size-adjust: none !important;
+    }}

@@ -11,11 +11,12 @@ const Login = () => {
 
     let navigate = useNavigate();
     let location = useLocation();
-    let from = location.state?.from?.pathname || "/menu";
+    let from = location.state?.from?.pathname || "/";
 
     const { user, setUser } = useAuth();
 
     user?.phone && navigate(from, { replace: true })
+    
     const [err, setErr] = useState("")
     const [flag, setFlag] = useState(0)
 
@@ -23,7 +24,7 @@ const Login = () => {
     const onSubmit = data => mobileNumberHandler(data.number);
 
     const mobileNumberHandler = (number) => {
-        number.length === 11 ? otpGenerate(number) : setErr("Incorrect Phone Number")
+        number.length === 11 ? otpGenerate(number) : setErr("ভুল ফোন নম্বর")
     }
 
     const otpGenerate = (phone) => {
@@ -117,9 +118,10 @@ const Login = () => {
                 if (data.status === true) {
                     localStorage.setItem('uId', data.user._id)
                     setUser(data.user)
-                    navigate('/menu')
+                    navigate('/')
                 }
                 else {
+                    window.navigator.vibrate([200,100,300])
                     Swal.fire({
                         icon: 'error',
                         title: `${data.message}`,
@@ -128,7 +130,7 @@ const Login = () => {
                     setOtp('')
                 }
                 // data.status === true ?
-                //         navigate('/menu') :
+                //         navigate('/') :
                 //     Swal.fire({
                 //         icon: 'error',
                 //         title: `${data.message}`,
@@ -141,24 +143,26 @@ const Login = () => {
 
     return (
         <section className='container'>
-            <h1 className='title mt-5 text-center'>Enter Mobile Number</h1>
+            <h3 className='title mt-5 text-center fw-bold'>ই-ফার্মার</h3>
+           
 
-            <div className="d-flex justify-content-center align-items-center mt-5">
+            <div className="d-flex flex-column justify-content-center align-items-center mt-4">
                 <form id='phone-container' onSubmit={handleSubmit(onSubmit)}>
+                    <h5 className='title mt-3 text-center fw-bold'>মোবাইল নম্বর টাইপ করে লগইন করেন</h5>
                     <div className="">
-                        <input placeholder='Mobile Number' type='number' className='input-login-number' {...register("number", { required: true })} />
+                        <input placeholder='মোবাইল নম্বর' type='number' className='input-login-number' {...register("number", { required: true })} />
                         <br />
-                        {errors.number && <span className='text-danger fw-bold m-1'>Enter Mobile Number</span>}
+                        {errors.number && <span className='text-danger fw-bold m-1'>অনুগ্রহ করে মোবাইল নম্বর লিখুন</span>}
                     </div>
                     <p className='text-danger fw-bold m-1'>{err}</p>
-                    <input type="submit" className='btn-login mt-4' value="Login" />
+                    <button type="submit" className='btn-login mt-4 text-white'>লগইন</button>
                 </form>
             </div>
 
             <div style={{ display: 'none' }} id='otp-container' className="">
-
+                <h5 className='title mt-3 text-center fw-bold mb-5'>OTP কোড নিচে টাইপ করুন</h5>
                 <h2 className='otp-text text-center'>One Time Password (OTP) sent</h2>
-                <div className="d-flex justify-content-center align-items-center mt-5">
+                <div className="d-flex justify-content-center align-items-center mt-3" >
                     <OtpInput inputStyle={'input-otp'} className='input-otp d-flex justify-content-center align-items-center mx-3' value={otp} onChange={handleChange} numInputs={4} isInputNum={true} />
                 </div>
                 <p className='otp-text text-center mt-3'>Haven’t receive OTP?</p>
