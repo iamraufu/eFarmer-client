@@ -16,7 +16,7 @@ const Login = () => {
     const { user, setUser } = useAuth();
 
     user?.phone && navigate(from, { replace: true })
-    
+
     const [err, setErr] = useState("")
     const [flag, setFlag] = useState(0)
 
@@ -79,7 +79,7 @@ const Login = () => {
                 return () => clearInterval(intervalId);
             }
             else {
-                setSeconds(convertToBangla(formatTime(0)))
+                setSeconds(formatTime(0))
                 setFlag(0)
                 document.getElementById('phone-container').style.display = 'block';
                 document.getElementById('otp-container').style.display = 'none';
@@ -91,17 +91,17 @@ const Login = () => {
     }, [seconds, flag]);
 
     const convertToBangla = number => {
-        
+
         const banglaNumbers = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
         let bangla = '';
-      
+
         while (number > 0) {
-          const digit = number % 10;
-          bangla = banglaNumbers[digit] + bangla;
-          number = Math.floor(number / 10);
+            const digit = number % 10;
+            bangla = banglaNumbers[digit] + bangla;
+            number = Math.floor(number / 10);
         }
         return bangla;
-      }
+    }
 
     const formatTime = time => {
         return time < 10 ? (`0${time}`) : time;
@@ -118,7 +118,7 @@ const Login = () => {
             phone: otpDescription.phone,
             otp: otp
         }
-        
+
         fetch('https://efarmer.herokuapp.com/otp-verification', {
             method: 'POST',
             headers: {
@@ -134,7 +134,7 @@ const Login = () => {
                     navigate('/')
                 }
                 else {
-                    window.navigator.vibrate([200,100,300])
+                    window.navigator.vibrate([200, 100, 300])
                     Swal.fire({
                         icon: 'error',
                         title: `${data.message}`,
@@ -148,7 +148,7 @@ const Login = () => {
     return (
         <section className='container'>
             <h3 className='title mt-5 text-center fw-bold'>ই-ফার্মার</h3>
-           
+
             <div className="d-flex flex-column justify-content-center align-items-center mt-4">
                 <form id='phone-container' onSubmit={handleSubmit(onSubmit)}>
                     <h5 className='title mt-3 text-center fw-bold'>মোবাইল নম্বর টাইপ করে লগইন করেন</h5>
@@ -162,14 +162,15 @@ const Login = () => {
                 </form>
             </div>
 
-            <div style={{ display: 'none' }} id='otp-container' className="">
+            <div style={{ display: 'none' }}
+                id='otp-container' className="">
                 <h5 className='title mt-3 text-center fw-bold mb-5'>OTP কোড নিচে টাইপ করুন</h5>
                 <h2 className='otp-text text-center'>ওয়ান টাইম পাসওয়ার্ড (ওটিপি) পাঠানো হয়েছে</h2>
                 <div className="d-flex justify-content-center align-items-center mt-3" >
                     <OtpInput inputStyle={'input-otp'} className='input-otp d-flex justify-content-center align-items-center mx-3' value={otp} onChange={handleChange} numInputs={4} isInputNum={true} />
                 </div>
                 <p className='otp-text text-center mt-3'>ওয়ান টাইম পাসওয়ার্ড (ওটিপি) পাননি?</p>
-                <p className='otp-subtext text-center mt-3'>আবার পাঠান ( 00:{seconds} )</p>
+                <p className='otp-subtext text-center mt-3'>আবার পাঠান ( 00:{convertToBangla(seconds)} )</p>
             </div>
         </section>
     );
